@@ -1,0 +1,145 @@
+﻿@model IEnumerable<SCADAMasan.Models.EF.Report>
+
+@{
+    ViewBag.Title = "Báo cáo";
+    Layout = "~/Areas/SCADAGroup/Views/Shared/_Layout.cshtml";
+}
+@section Header{
+    <h2>BÁO CÁO</h2>
+}
+
+@section Script{
+
+}
+
+
+<style type="text/css">
+    table, th, td {
+        border: 1px solid #ccc;
+    }
+
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 10px;
+    }
+
+    th {
+        background: #808080;
+        color: white;
+    }
+
+    td {
+        color: #000000;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+        cursor: pointer;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-12" style="margin-bottom:10px">
+
+        @using (Html.BeginForm("BaoCao", "Main", FormMethod.Post))
+        {
+            <div class="col-lg-2">
+                <label>Từ ngày: </label>
+                <input type="text" id="txtTimeBegin" name="txtTimeBegin" placeholder="" value="@ViewBag.txtTimeBegin" class="form-control" style="color:#000000" />
+
+                <label>Đến ngày: </label>
+                <input type="text" id="txtTimeEnd" name="txtTimeEnd" placeholder="" value="@ViewBag.txtTimeEnd" class="form-control" style="color:#000000" />
+            </div>
+            <div class="col-lg-2">
+                <label>Sản phẩm: </label>
+                <input type="text" id="txtSanPham" name="txtSanPham" placeholder="" value="@ViewBag.txtSanPham" class="form-control" style="color:#000000" />
+
+            </div>
+            <div class="col-lg-2">
+                <label>Ca sản xuất: </label>
+                <input type="text" id="txtCaSanXuat" name="txtCaSanXuat" placeholder="" value="@ViewBag.txtCaSanXuat" class="form-control" style="color:#000000" />
+
+            </div>
+            <div class="col-lg-2">
+                <label>Dây chuyền: </label>
+                <input type="text" id="txtDayChuyen" name="txtDayChuyen" placeholder="" value="@ViewBag.txtDayChuyen" class="form-control" style="color:#000000" />
+
+            </div>
+            <div class="col-lg-2">
+                <label>Máy số: </label>
+                <input type="text" id="txtMaySo" name="txtMaySo" placeholder="" value="@ViewBag.txtMaySo" class="form-control" style="color:#000000" />
+            </div>
+            <div class="col-lg-2">
+                <input type="submit" value="Tìm kiếm" class=" btn btn-success" readonly="readonly" />
+            </div>
+        }
+    </div>
+</div>
+
+<div class="col-lg-12">
+
+    <table>
+        <tr>
+            <th>
+                <label>Ngày sản xuất</label>
+            </th>
+            <th>
+                <label>Sản phẩm</label>
+            </th>
+            <th>
+                <label>Ca sản xuất</label>
+            </th>
+            <th>
+                <label>Dây chuyền</label>
+            </th>
+            <th>
+                <label>Máy số</label>
+            </th>
+            <th>
+                <label>Tổng số gói</label>
+            </th>
+            <th>
+                <label>Số gói cấn</label>
+            </th>
+            <th>
+                <label>Số gói rỗng</label>
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NgaySanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SanPham)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CaSanXuat)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DayChuyen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaySo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TongSoGoi)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoGoiCan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoGoiRong)
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>

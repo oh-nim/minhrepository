@@ -1,0 +1,69 @@
+﻿@using SCADAMasan.Areas.SCADAGroup.Models;
+@using SCADAMasan.Models;
+
+<header class="header fixed-top clearfix">
+    <!--logo start-->
+    <div class="brand">
+        <div class="col-lg-12" style="margin-top:15px">
+            <table>
+                <tbody>
+                    <tr>
+                        <td><img src="~/Assets/Admin/images/logo_BK.png" style="max-width:30px" alt=""></td>
+                        <td><label style="align-content:center; color:#ffffff; margin-left:5px">Đại học Bách Khoa Hà Nội</label></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        @*<label class="control-label col-md-10" style="align-content:center">Đại học Bách Khoa Hà Nội</label>
+        <div class="col-md-2">
+            <a href="index.html" class="logo">
+                <img src="~/Assets/Admin/images/logo_BK.png" style="max-width:30px" alt="">
+            </a>
+        </div>*@
+       
+        <div class="sidebar-toggle-box">
+            <div class="fa fa-bars"></div>
+        </div>
+    </div>
+    <!--logo end-->
+
+    <div class="top-nav clearfix">
+        <!--search & user info start-->
+        <ul class="nav pull-right top-menu">
+            <li>
+                <input type="text" class="form-control search" placeholder=" Search">
+            </li>
+            <!-- user login dropdown start-->
+            <li class="dropdown">
+                <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                    <img alt="" src="~/Assets/Admin/images/logo-admin.png">
+                    <span class="username">
+                        @{
+                            var session = (LoginModel)Session[Constants.USER_SESSION];
+                                var result = "Noname";
+                                if (session != null)
+                                {
+                                    @session.fullname;
+                                }
+                                else
+                                {
+                                    @result;
+                                }
+                        }
+
+                    </span>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu extended logout">
+                    <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
+                    <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
+                    <li><a href="@Url.Action("Logout", "Login")"><i class="fa fa-key"></i> Thoát</a></li>
+                </ul>
+            </li>
+            <!-- user login dropdown end -->
+          
+        </ul>
+        <!--search & user info end-->
+    </div>
+</header>

@@ -1,0 +1,265 @@
+﻿@model SCADAMasan.Models.EF.CaiDatCaSanXuat
+
+@{
+    ViewBag.Title = "Cài đặt ca sản xuất";
+    Layout = "~/Areas/SCADAGroup/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <h2>CÀI ĐẶT CA SẢN XUẤT</h2>
+}
+
+@section Script{
+
+}
+@*<div class="row">
+        <ul class="compose-editor">
+            <li class="dropdown">
+                <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-font"></i>&nbsp;
+                    <span class="current-font">Normal text</span>&nbsp;
+                    <i class="fa fa-angle-down"></i>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="div" tabindex="-1" href="javascript:;" unselectable="on" class="wysihtml5-command-active">Normal text</a></li>
+                    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1" tabindex="-1" href="javascript:;" unselectable="on" class="">Heading 1</a></li>
+                    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2" tabindex="-1" href="javascript:;" unselectable="on">Heading 2</a></li>
+                    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3" tabindex="-1" href="javascript:;" unselectable="on">Heading 3</a></li>
+                    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4" href="javascript:;" unselectable="on">Heading 4</a></li>
+                    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5" href="javascript:;" unselectable="on">Heading 5</a></li>
+                    <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6" href="javascript:;" unselectable="on">Heading 6</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>*@
+
+<div class="row" style="color:#000000">
+    <div class="col-lg-12">
+        <section class="panel">
+            <div class="panel-body">
+
+                @using (Html.BeginForm("SaveCaiDatCaSanXuat", "Main", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="row">
+                        @*<div class="col-lg-3">
+                                <label>Ca 1: </label>
+                            </div>
+                            <div class="col-lg-3">
+                                <label>Thời gian bắt đầu: </label>
+                            </div>
+                            <div class="col-lg-3">
+                                @Html.EditorFor(model => model.HourCa1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.HourCa1, "", new { @class = "text-danger" })
+                                <label>Giờ</label>
+                            </div>
+                            <div class="col-lg-3">
+
+                            </div>*@
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Id)
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>    </th>
+                                    <th>    </th>
+                                    <th>    </th>
+                                    <th>    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Ca 1: </td>
+                                    <td>Thời gian bắt đầu: </td>
+                                    <td>
+                                        <div class="col-lg-6">
+                                            @Html.EditorFor(model => model.HourCa1, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.HourCa1, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Giờ</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-lg-6">
+                                            @Html.EditorFor(model => model.MinuteCa1, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MinuteCa1, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Phút</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Trưởng ca: </td>
+                                    <td colspan="2">
+                                        <div class="col-lg-12">
+                                            @Html.EditorFor(model => model.TruongCa1, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TruongCa1, "", new { @class = "text-danger" })
+                                        </div>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Ca 2: </td>
+                                    <td>Thời gian bắt đầu: </td>
+                                    <td>
+                                        <div class="col-lg-6">
+                                            @Html.EditorFor(model => model.HourCa2, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.HourCa2, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Giờ</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-lg-6">
+                                            @Html.EditorFor(model => model.MinuteCa2, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MinuteCa2, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Phút</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Trưởng ca: </td>
+                                    <td colspan="2">
+                                        <div class="col-lg-12">
+                                            @Html.EditorFor(model => model.TruongCa2, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TruongCa2, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>Ca 3: </td>
+                                    <td>Thời gian bắt đầu: </td>
+                                    <td>
+                                        <div class="col-lg-6">
+                                            @Html.EditorFor(model => model.HourCa3, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.HourCa3, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Giờ</label>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="col-lg-6">
+                                            @Html.EditorFor(model => model.MinuteCa3, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.MinuteCa3, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <label>Phút</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>Trưởng ca: </td>
+                                    <td colspan="2">
+                                        <div class="col-lg-12">
+                                            @Html.EditorFor(model => model.TruongCa3, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.TruongCa3, "", new { @class = "text-danger" })
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-lg-12">
+                        <input type="submit" value="Save" style="width:100px" class="btn btn-primary" />
+                    </div>
+
+                    @*<div class="form-horizontal">
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TruongCa1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TruongCa2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TruongCa2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TruongCa2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.TruongCa3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.TruongCa3, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.TruongCa3, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HourCa1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.HourCa1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HourCa1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MinuteCa1, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MinuteCa1, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MinuteCa1, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HourCa2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.HourCa2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HourCa2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MinuteCa2, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MinuteCa2, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MinuteCa2, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.HourCa3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.HourCa3, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.HourCa3, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.MinuteCa3, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.MinuteCa3, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.MinuteCa3, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>*@
+                }
+
+            </div>
+        </section>
+    </div>
+</div>

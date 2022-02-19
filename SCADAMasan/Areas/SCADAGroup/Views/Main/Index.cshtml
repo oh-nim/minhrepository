@@ -1,0 +1,613 @@
+﻿@model SCADAMasan.Models.Test1
+
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Areas/SCADAGroup/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <h3 style="color:#000000">GIỚI THIỆU PROJECT</h3>
+}
+
+@section Script{
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+}
+
+<div class="row" style="color:#000000">
+    <div class="col-lg-12">
+        <img src="~/Assets/Admin/images/Hust.png" style=" display: block; margin-left: auto; margin-right: auto; " />
+        <h2 style="font-weight:bold; text-align: center; color: #ff0000; border-radius: 10px; border:double;padding:4px">HỆ THỐNG GIÁM SÁT CHẤT LƯỢNG SẢN PHẨM KHU BAO GÓI</h2>
+        <h3 style="font-weight:bold; text-align: center; color: #000000">GVHD: TS. ĐÀO QUÝ THỊNH</h3>
+        <h4 style="font-weight:bold; text-align: center; color: #000000">Học phần: DCS & SCADA</h4>
+    </div>
+
+    <div class="col-lg-12">
+        <hr />
+    </div>
+
+    <div class="col-lg-12">
+        <div class="col-lg-3" style="border-right: thin solid #808080">
+            <div class="col-lg-4">
+                <img src="~/Assets/Admin/images/1. phạm đức cường 20173701.jpg" style="border-radius: 100%; -moz-border-radius: 100%; -webkit-border-radius: 100%;" width="80" height="80" />
+            </div>
+            <div class="col-lg-8">
+                <h4 style="font-weight:bold; text-align: left; color: #000000">Phạm Đức Cường</h4>
+                <h6 style="text-align: left; color: #808080">MSSV: 20173701</h6>
+            </div>
+        </div>
+        <div class="col-lg-3" style="border-right: thin solid #808080">
+            <div class="col-lg-4">
+                <img src="~/Assets/Admin/images/2. nguyễn đức anh 20173617.jpg" style="border-radius: 100%; -moz-border-radius: 100%; -webkit-border-radius: 100%;" width="80" height="80" />
+            </div>
+            <div class="col-lg-8">
+                <h4 style="font-weight:bold; text-align: left; color: #000000">Nguyễn Đức Anh</h4>
+                <h6 style="text-align: left; color: #808080">MSSV: 20173617</h6>
+            </div>
+        </div>
+        <div class="col-lg-3" style="border-right: thin solid #808080">
+            <div class="col-lg-4">
+                <img src="~/Assets/Admin/images/3. phạm trung kiên 20173997.jpg" style="border-radius: 100%; -moz-border-radius: 100%; -webkit-border-radius: 100%;" width="80" height="80" />
+            </div>
+            <div class="col-lg-8">
+                <h4 style="font-weight:bold; text-align: left; color: #000000">Phạm Trung Kiên</h4>
+                <h6 style="text-align: left; color: #808080">MSSV: 20173997</h6>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="col-lg-4">
+                <img src="~/Assets/Admin/images/4. nguyễn việt dũng 20173779.jpg" style="border-radius: 100%; -moz-border-radius: 100%; -webkit-border-radius: 100%;" width="80" height="80" />
+            </div>
+            <div class="col-lg-8">
+                <h4 style="font-weight:bold; text-align: left; color: #000000">Nguyễn Việt Dũng</h4>
+                <h6 style="text-align: left; color: #808080">MSSV: 20173779</h6>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12">
+        <hr />
+    </div>
+    <div class="col-lg-12" style="margin: 10px 10px 10px 10px">
+        <div class="col-lg-4" style="font-weight:bold">
+            <label>Chọn line hiển thị</label>
+            &emsp;
+            <input type="radio" id="modeLineAuto" name="modeLine" value="auto" checked="checked">
+            <label for="modeLineAuto">Tự động</label>
+            &emsp;
+            <input type="radio" id="modeLineMan" name="modeLine" value="man">
+            <label for="modeLineMan">Tự chọn</label>
+        </div>
+        <div class="col-lg-4">
+            <label>Thời gian hiển thị</label>
+            &emsp;
+            <input type="radio" id="modeTimeAuto" name="modeTime" value="auto" checked="checked">
+            <label for="modeTimeAuto">Tự động</label>
+            &emsp;
+            <input type="radio" id="modeTimeMan" name="modeTime" value="man" />
+            <label for="modeTimeMan">Tự chọn</label>
+        </div>
+        <div class="col-lg-4">
+            <label>Ca sản xuất: 1<span>@ViewBag.Shift</span></label>
+            &emsp;
+            <label>Trưởng ca: <span>@ViewBag.TruongCa</span></label>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="color:#000000">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">Line @ViewBag.NumberLineA</header>
+            <div class="panel-body">
+                <table class="table" border="0">
+                    <thead>
+                        <tr>
+                            <th style="width:auto">Line @ViewBag.NumberLineA.1</th>
+                            <th style="width:auto">  </th>
+                            <th style="width:auto">Line @ViewBag.NumberLineA.2</th>
+                            <th style="width:auto">  </th>
+                            <th style="width:auto">Line @ViewBag.NumberLineA.3</th>
+                            <th style="width:auto">  </th>
+                            <th style="width:auto">Line @ViewBag.NumberLineA.4</th>
+                            <th style="width:auto">  </th>
+                            @*<th style="width:auto">Line @ViewBag.NumberLineA </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Hàng 1-->
+                        <tr>
+                            <td>
+                                <label for="Param11A">Tốc độ máy (gói/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param11A" name="Param11A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param12A">Tốc độ máy (gói/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param12A" name="Param12A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param13A">Tốc độ máy (gói/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param13A" name="Param13A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param14A">Tốc độ máy (gói/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param14A" name="Param14A" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                <label for="Param1A">Tốc độ máy (gói/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param1A" name="Param1A" style="width:60px" /><br />
+                            </td>*@
+                        </tr>
+                        <!--Hàng 2-->
+                        <tr>
+                            <td>
+                                <label for="Param21A">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param21A" name="Param21A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param22A">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param22A" name="Param22A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param23A">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param23A" name="Param23A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param24A">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param24A" name="Param24A" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param2A">Hiệu suất (%OEE):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param2A" name="Param2A" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 3-->
+                        <tr>
+                            <td>
+                                <label for="Param31A">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param31A" name="Param31A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param32A">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param32A" name="Param32A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param33A">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param33A" name="Param33A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param34A">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param34A" name="Param34A" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param3A">Sản lượng (gói):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param3A" name="Param3A" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 4-->
+                        <tr>
+                            <td>
+                                <label for="Param41A">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param41A" name="Param41A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param42A">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param42A" name="Param42A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param43A">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param43A" name="Param43A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param44A">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param44A" name="Param44A" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param4A">Số gói cấn (gói):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param4A" name="Param4A" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 5-->
+                        <tr>
+                            <td>
+                                <label for="Param51A">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param51A" name="Param51A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param52A">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param52A" name="Param52A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param53A">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param53A" name="Param53A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param54A">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param54A" name="Param54A" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param5A">% Cấn gia vị:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param5A" name="Param5A" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 6-->
+                        <tr>
+                            <td>
+                                <label for="Param61A">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param61A" name="Param61A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param62A">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param62A" name="Param62A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param63A">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param63A" name="Param63A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param64A">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param64A" name="Param64A" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param6A">Số gói rỗng (gói):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param6A" name="Param6A" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 7-->
+                        <tr>
+                            <td>
+                                <label for="Param71A">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param71A" name="Param71A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param72A">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param72A" name="Param72A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param73A">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param73A" name="Param73A" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param74A">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param74A" name="Param74A" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param7A">% Gói rỗng:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param7A" name="Param7A" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>
+
+<div class="row" style="color:#000000">
+    <div class="col-lg-12">
+        <section class="panel">
+            <header class="panel-heading">Line @ViewBag.NumberLineB</header>
+            <div class="panel-body">
+                <table class="table" border="0">
+                    <thead>
+                        <tr>
+                            <th style="width:auto">Line @ViewBag.NumberLineB.1</th>
+                            <th style="width:auto">  </th>
+                            <th style="width:auto">Line @ViewBag.NumberLineB.2</th>
+                            <th style="width:auto">  </th>
+                            <th style="width:auto">Line @ViewBag.NumberLineB.3</th>
+                            <th style="width:auto">  </th>
+                            <th style="width:auto">Line @ViewBag.NumberLineB.4</th>
+                            <th style="width:auto">  </th>
+                            @*<th style="width:auto">Line @ViewBag.NumberLineB </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!--Hàng 1-->
+                        <tr>
+                            <td>
+                                <label for="Param11B">Tốc độ máy (giờ/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param11B" name="Param11B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param12B">Tốc độ máy (giờ/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param12B" name="Param12B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param13B">Tốc độ máy (giờ/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param13B" name="Param13B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param14B">Tốc độ máy (giờ/phút): </label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param14B" name="Param14B" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param1B">Tốc độ máy (giờ/phút): </label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param1B" name="Param1B" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 2-->
+                        <tr>
+                            <td>
+                                <label for="Param21B">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param21B" name="Param21B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param22B">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param22B" name="Param22B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param23B">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param23B" name="Param23B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param24B">Hiệu suất (%OEE):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param24B" name="Param24B" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param2B">Hiệu suất (%OEE):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param2B" name="Param2B" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 3-->
+                        <tr>
+                            <td>
+                                <label for="Param31B">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param31B" name="Param31B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param32B">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param32B" name="Param32B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param33B">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param33B" name="Param33B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param34B">Sản lượng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param34B" name="Param34B" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param3B">Sản lượng (gói):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param3B" name="Param3B" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 4-->
+                        <tr>
+                            <td>
+                                <label for="Param41B">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param41B" name="Param41B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param42B">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param42B" name="Param42B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param43B">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param43B" name="Param43B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param44B">Số gói cấn (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param44B" name="Param44B" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param4B">Số gói cấn (gói):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param4B" name="Param4B" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 5-->
+                        <tr>
+                            <td>
+                                <label for="Param51B">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param51B" name="Param51B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param52B">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param52B" name="Param52B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param53B">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param53B" name="Param53B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param54B">% Cấn gia vị:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param54B" name="Param54B" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param5B">% Cấn gia vị:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param5B" name="Param5B" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 6-->
+                        <tr>
+                            <td>
+                                <label for="Param61B">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param61B" name="Param61B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param62B">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param62B" name="Param62B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param63B">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param63B" name="Param63B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param64B">Số gói rỗng (gói):</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param64B" name="Param64B" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param6B">Số gói rỗng (gói):</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param6B" name="Param6B" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+                        <!--Hàng 7-->
+                        <tr>
+                            <td>
+                                <label for="Param71B">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param71B" name="Param71B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param72B">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param72B" name="Param72B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param73B">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param73B" name="Param73B" style="width:60px" /><br />
+                            </td>
+                            <td>
+                                <label for="Param74B">% Gói rỗng:</label>
+                            </td>
+                            <td>
+                                <input type="text" id="Param74B" name="Param74B" style="width:60px" /><br />
+                            </td>
+                            @*<td>
+                                    <label for="Param7B">% Gói rỗng:</label>
+                                </td>
+                                <td>
+                                    <input type="text" id="Param7B" name="Param7B" style="width:60px" /><br />
+                                </td>*@
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</div>

@@ -1,0 +1,86 @@
+﻿@model SCADAMasan.Models.EF.ThongSo
+
+@{
+    ViewBag.Title = "Cài đặt thông số";
+    Layout = "~/Areas/SCADAGroup/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <h2>CÀI ĐẶT THÔNG SỐ PLC</h2>
+}
+
+@section Script{
+
+}
+
+@using (Html.BeginForm("SaveThongSoPLC", "Main", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal" style="color:#000000">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-group">
+            <label class="control-label col-md-2">Tốc độ chuẩn (gói/phút): </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TocDoChuan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TocDoChuan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời gian tính dừng máy (x0.1s): </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimeDungMay, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TimeDungMay, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời gian chấp nhận gói (x0.1s): </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimeChapNhanGoi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TimeChapNhanGoi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời gian tính gói cấn (x0.1s): </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimeTinhGoiCan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TimeTinhGoiCan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời gian đẩy gói cấn (x0.1s): </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimeDayGoiCan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TimeDayGoiCan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời gian cập nhật PLC (x0.1s): </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimeUpdatePLC, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TimeUpdatePLC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="control-label col-md-2">Thời gian Xilanh đẩy gói (x0.1s): </label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TimeXilanhDayGoi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TimeXilanhDayGoi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" style="width:100px" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

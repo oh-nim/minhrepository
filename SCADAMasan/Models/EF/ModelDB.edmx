@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SCADAMasanHDModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="200" />
+          <Property Name="Username" Type="nvarchar" MaxLength="200" />
+          <Property Name="Pass" Type="nvarchar" MaxLength="200" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="CaiDatCaSanXuat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TruongCa1" Type="nvarchar" MaxLength="200" />
+          <Property Name="TruongCa2" Type="nvarchar" MaxLength="200" />
+          <Property Name="TruongCa3" Type="nvarchar" MaxLength="200" />
+          <Property Name="HourCa1" Type="int" />
+          <Property Name="MinuteCa1" Type="int" />
+          <Property Name="HourCa2" Type="int" />
+          <Property Name="MinuteCa2" Type="int" />
+          <Property Name="HourCa3" Type="int" />
+          <Property Name="MinuteCa3" Type="int" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NgaySanXuat" Type="datetime" />
+          <Property Name="SanPham" Type="nvarchar" MaxLength="500" />
+          <Property Name="CaSanXuat" Type="int" />
+          <Property Name="DayChuyen" Type="int" />
+          <Property Name="MaySo" Type="int" />
+          <Property Name="TongSoGoi" Type="int" />
+          <Property Name="SoGoiCan" Type="int" />
+          <Property Name="SoGoiRong" Type="int" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="ThongSo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayChuyenSo" Type="int" />
+          <Property Name="MaySo" Type="int" />
+          <Property Name="SanPham" Type="nvarchar" MaxLength="500" />
+          <Property Name="CaSanXuat" Type="int" />
+          <Property Name="TocDoChuan" Type="int" />
+          <Property Name="TimeDungMay" Type="int" />
+          <Property Name="TimeChapNhanGoi" Type="int" />
+          <Property Name="TimeTinhGoiCan" Type="int" />
+          <Property Name="TimeDayGoiCan" Type="int" />
+          <Property Name="TimeUpdatePLC" Type="int" />
+          <Property Name="TimeXilanhDayGoi" Type="int" />
+        </EntityType>
+        <EntityType Name="TruongCa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DisplayName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityContainer Name="SCADAMasanHDModelStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CaiDatCaSanXuat" EntityType="Self.CaiDatCaSanXuat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Report" EntityType="Self.Report" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SanPham" EntityType="Self.SanPham" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongSo" EntityType="Self.ThongSo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TruongCa" EntityType="Self.TruongCa" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SCADAMasanHDModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Pass" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="SCADAMasanHDEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="Self.Account" />
+          <EntitySet Name="CaiDatCaSanXuats" EntityType="SCADAMasanHDModel.CaiDatCaSanXuat" />
+          <EntitySet Name="SanPhams" EntityType="SCADAMasanHDModel.SanPham" />
+          <EntitySet Name="ThongSoes" EntityType="SCADAMasanHDModel.ThongSo" />
+          <EntitySet Name="TruongCas" EntityType="SCADAMasanHDModel.TruongCa" />
+          <EntitySet Name="Reports" EntityType="SCADAMasanHDModel.Report" />
+        </EntityContainer>
+        <EntityType Name="CaiDatCaSanXuat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TruongCa1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TruongCa2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TruongCa3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="HourCa1" Type="Int32" />
+          <Property Name="MinuteCa1" Type="Int32" />
+          <Property Name="HourCa2" Type="Int32" />
+          <Property Name="MinuteCa2" Type="Int32" />
+          <Property Name="HourCa3" Type="Int32" />
+          <Property Name="MinuteCa3" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SanPham">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ThongSo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayChuyenSo" Type="Int32" />
+          <Property Name="MaySo" Type="Int32" />
+          <Property Name="SanPham" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CaSanXuat" Type="Int32" />
+          <Property Name="TocDoChuan" Type="Int32" />
+          <Property Name="TimeDungMay" Type="Int32" />
+          <Property Name="TimeChapNhanGoi" Type="Int32" />
+          <Property Name="TimeTinhGoiCan" Type="Int32" />
+          <Property Name="TimeDayGoiCan" Type="Int32" />
+          <Property Name="TimeUpdatePLC" Type="Int32" />
+          <Property Name="TimeXilanhDayGoi" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TruongCa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NgaySanXuat" Type="DateTime" Precision="3" />
+          <Property Name="SanPham" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CaSanXuat" Type="Int32" />
+          <Property Name="DayChuyen" Type="Int32" />
+          <Property Name="MaySo" Type="Int32" />
+          <Property Name="TongSoGoi" Type="Int32" />
+          <Property Name="SoGoiCan" Type="Int32" />
+          <Property Name="SoGoiRong" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SCADAMasanHDModelStoreContainer" CdmEntityContainer="SCADAMasanHDEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="SCADAMasanHDModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Pass" ColumnName="Pass" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CaiDatCaSanXuats">
+            <EntityTypeMapping TypeName="SCADAMasanHDModel.CaiDatCaSanXuat">
+              <MappingFragment StoreEntitySet="CaiDatCaSanXuat">
+                <ScalarProperty Name="MinuteCa3" ColumnName="MinuteCa3" />
+                <ScalarProperty Name="HourCa3" ColumnName="HourCa3" />
+                <ScalarProperty Name="MinuteCa2" ColumnName="MinuteCa2" />
+                <ScalarProperty Name="HourCa2" ColumnName="HourCa2" />
+                <ScalarProperty Name="MinuteCa1" ColumnName="MinuteCa1" />
+                <ScalarProperty Name="HourCa1" ColumnName="HourCa1" />
+                <ScalarProperty Name="TruongCa3" ColumnName="TruongCa3" />
+                <ScalarProperty Name="TruongCa2" ColumnName="TruongCa2" />
+                <ScalarProperty Name="TruongCa1" ColumnName="TruongCa1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SanPhams">
+            <EntityTypeMapping TypeName="SCADAMasanHDModel.SanPham">
+              <MappingFragment StoreEntitySet="SanPham">
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongSoes">
+            <EntityTypeMapping TypeName="SCADAMasanHDModel.ThongSo">
+              <MappingFragment StoreEntitySet="ThongSo">
+                <ScalarProperty Name="TimeXilanhDayGoi" ColumnName="TimeXilanhDayGoi" />
+                <ScalarProperty Name="TimeUpdatePLC" ColumnName="TimeUpdatePLC" />
+                <ScalarProperty Name="TimeDayGoiCan" ColumnName="TimeDayGoiCan" />
+                <ScalarProperty Name="TimeTinhGoiCan" ColumnName="TimeTinhGoiCan" />
+                <ScalarProperty Name="TimeChapNhanGoi" ColumnName="TimeChapNhanGoi" />
+                <ScalarProperty Name="TimeDungMay" ColumnName="TimeDungMay" />
+                <ScalarProperty Name="TocDoChuan" ColumnName="TocDoChuan" />
+                <ScalarProperty Name="CaSanXuat" ColumnName="CaSanXuat" />
+                <ScalarProperty Name="SanPham" ColumnName="SanPham" />
+                <ScalarProperty Name="MaySo" ColumnName="MaySo" />
+                <ScalarProperty Name="DayChuyenSo" ColumnName="DayChuyenSo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TruongCas">
+            <EntityTypeMapping TypeName="SCADAMasanHDModel.TruongCa">
+              <MappingFragment StoreEntitySet="TruongCa">
+                <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reports">
+            <EntityTypeMapping TypeName="SCADAMasanHDModel.Report">
+              <MappingFragment StoreEntitySet="Report">
+                <ScalarProperty Name="SoGoiRong" ColumnName="SoGoiRong" />
+                <ScalarProperty Name="SoGoiCan" ColumnName="SoGoiCan" />
+                <ScalarProperty Name="TongSoGoi" ColumnName="TongSoGoi" />
+                <ScalarProperty Name="MaySo" ColumnName="MaySo" />
+                <ScalarProperty Name="DayChuyen" ColumnName="DayChuyen" />
+                <ScalarProperty Name="CaSanXuat" ColumnName="CaSanXuat" />
+                <ScalarProperty Name="SanPham" ColumnName="SanPham" />
+                <ScalarProperty Name="NgaySanXuat" ColumnName="NgaySanXuat" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

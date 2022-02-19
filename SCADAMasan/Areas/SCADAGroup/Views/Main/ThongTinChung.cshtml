@@ -1,0 +1,143 @@
+﻿@using SCADAMasan.Models.EF
+
+@{
+    ViewBag.Title = "Thông tin chung";
+    Layout = "~/Areas/SCADAGroup/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <h2>CÀI ĐẶT THÔNG TIN CHUNG</h2>
+}
+
+@section Script{
+
+}
+
+@{ 
+    IEnumerable<TruongCa> tempTruongca = ViewData["Truongca"] as IEnumerable<TruongCa>;
+    IEnumerable<SanPham> tempSanPham = ViewData["SanPham"] as IEnumerable<SanPham>;
+}
+<div class="row">
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-12">
+                @*@using (Html.BeginForm("AddTruongCa", "Main"))
+                    {
+                        <div class="col-md-6">
+                            <input type="text" id="lbID1" name="lbID1" value="@ViewBag.lbID1" hidden="hidden" />
+                            <input type="text" id="txtDisplayName1" name="txtDisplayName1" placeholder="Nhập tên trưởng ca" value="@ViewBag.SearchKeyword" class="form-control" />
+                        </div>
+                        <div class="col-md-3">
+                            <input type="submit" value="Thêm" class=" btn btn-success" readonly="readonly" />
+                        </div>
+                    }*@
+                <form action="" method="post">
+                    <div class="col-md-6">
+                        <input type="text" id="lbID1" name="lbID1" value="@ViewBag.lbID1" hidden="hidden" />
+                        <input type="text" id="txtDisplayName1" name="txtDisplayName1" placeholder="Nhập tên trưởng ca" class="form-control"  style="color:#000000"/>
+                    </div>
+                    <input type="submit" value="Add" name="action:AddTruongCa" class=" btn btn-success" style="width:100px" readonly="readonly" />
+                    <input type="submit" value="Edit" name="action:EditTruongCa" class=" btn btn-success" style="width:100px" readonly="readonly" />
+                    <input type="submit" value="Delele" name="action:DeleteTruongCa" class=" btn btn-success" style="width:100px" readonly="readonly" />
+                </form>
+            </div>
+        </div>
+        <div class="row" style="color:#000000">
+            <div class="col-lg-12">
+                <table class="table  table-hover general-table" id="mytable">
+                    <thead>
+                        <tr>
+                            <th style="width:50px">STT</th>
+                            <th>Tên trưởng ca</th>
+                            <th hidden="hidden">    </th>
+                        </tr>
+                    </thead>
+                    <tbody style="cursor:pointer">
+                        @{ int i = 1;}
+                        @if (tempTruongca.Count() == 0)
+                        {
+                            <tr><td colspan="2">Không tồn tại </td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in tempTruongca)
+                            {
+                                <tr onclick="RowSelected1(this)">
+                                    <td>@i</td>
+                                    <td>@item.DisplayName</td>
+                                    <td hidden="hidden">@item.Id</td>
+                                </tr>
+                                i++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6">
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="" method="post">
+                    <div class="col-md-6">
+                        <input type="text" id="lbID2" name="lbID2" value="@ViewBag.lbID2" hidden="hidden" />
+                        <input type="text" id="txtDisplayName2" name="txtDisplayName2" placeholder="Nhập tên sản phẩm" class="form-control"  style="color:#000000"/>
+                    </div>
+                    <input type="submit" value="Add" name="action:AddSanPham" class=" btn btn-success" style="width:100px" readonly="readonly" />
+                    <input type="submit" value="Edit" name="action:EditSanPham" class=" btn btn-success" style="width:100px" readonly="readonly" />
+                    <input type="submit" value="Delete" name="action:DeleteSanPham" class=" btn btn-success" style="width:100px" readonly="readonly" />
+                </form>
+            </div>
+        </div>
+        <div class="row" style="color:#000000">
+            <div class="col-lg-12">
+                <table class="table  table-hover general-table">
+                    <thead>
+                        <tr>
+                            <th style="width:50px">STT</th>
+                            <th>Tên trưởng ca</th>
+                            <th hidden="hidden">    </th>
+                        </tr>
+                    </thead>
+                    <tbody style="cursor:pointer">
+                        @{ int k = 1;}
+                        @if (tempSanPham.Count() == 0)
+                        {
+                            <tr><td colspan="2">Không tồn tại </td></tr>
+                        }
+                        else
+                        {
+                            foreach (var item in tempSanPham)
+                            {
+                                <tr onclick="RowSelected2(this)">
+                                    <td>@k</td>
+                                    <td>@item.DisplayName</td>
+                                    <td hidden="hidden">@item.Id</td>
+                                </tr>
+                                k++;
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function RowSelected1(thisrow) {
+        var obj = document.getElementById("txtDisplayName1");
+        var tempstr = thisrow.cells[1].innerHTML.replace(/\s+/g, " ").trim();
+        document.getElementById("txtDisplayName1").setAttribute("value", tempstr);
+        var tempstr2 = thisrow.cells[2].innerHTML.replace(/\s+/g, " ").trim();
+        document.getElementById("lbID1").setAttribute("value", tempstr2);
+    }
+    function RowSelected2(thisrow) {
+        var obj = document.getElementById("txtDisplayName2");
+        var tempstr = thisrow.cells[1].innerHTML.replace(/\s+/g, " ").trim();
+        document.getElementById("txtDisplayName2").setAttribute("value", tempstr);
+        var tempstr2 = thisrow.cells[2].innerHTML.replace(/\s+/g, " ").trim();
+        document.getElementById("lbID2").setAttribute("value", tempstr2);
+    }
+</script>

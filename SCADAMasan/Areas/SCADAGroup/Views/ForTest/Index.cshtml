@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "For Test";
+    Layout = "~/Areas/SCADAGroup/Views/Shared/_Layout.cshtml";
+}
+
+@section Header{
+    <h3 class="panel-title">Thông tin người dùng</h3>
+}
+
+
+@section Script{
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script type="text/javascript">
+        LoadData();
+            function btnSave_Click() {
+                    //alert("");
+                    var std = {};
+                    std.DisplayName = $("#txtDisplayName").val();
+                    std.Usename = $("#txtUsername").val();
+                    std.Pass = $("#txtPassword").val();
+                    std.Email = $("#txtEmail").val();
+                    std.Phone = $("#txtPhone").val();
+                    $.ajax({
+                        type: "POST",
+                        url: '@Url.Action("createAccount")',
+                        data: '{std: ' + JSON.stringify(std) + '}',
+                        dataType: "json",
+                        contentType: "application/json; charset=utf-8",
+                        success: function () {
+                           // alert("Data has been added successfully.");
+                            LoadData();
+                        },
+                        error: function () {
+                            alert("Error while inserting data");
+                        }
+                    });
+                    return false;
+            };
+
+        function LoadData() {
+            //alert("hello myfen");
+            $("#tblStudent tbody tr").remove();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getAccount")',
+                dataType: 'json',
+                data: { id: '' },
+                success: function (data) {
+                    var items = '';
+                    $.each(data, function (i, item) {
+                        var rows = "<tr>"
+                            + "<td class='prtoducttd'>" + item.Id + "</td>"
+                            + "<td class='prtoducttd'>" + item.DisplayName + "</td>"
+                            + "<td class='prtoducttd'>" + item.Username + "</td>"
+                            + "<td class='prtoducttd'>" + item.Pass + "</td>"
+                            + "<td class='prtoducttd'>" + item.Email + "</td>"
+                            + "<td class='prtoducttd'>" + item.Phone + "</td>"
+                        + "</tr>";
+                        $('#tblStudent tbody').append(rows);
+                    });
+                },
+                error: function (ex) {
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                    alert("StackTrace: " + r.StackTrace);
+                    alert("ExceptionType: " + r.ExceptionType);
+                }
+            });
+            return false;
+        };
+    </script>
+}
+
+
+<div class="col-md-12">
+    <div class="panel panel-primary">
+        <div class="panel-body">
+            <div class="form-group col-lg-3">
+                <label>Họ và tên:</label>
+                <input type="text" name="txtDisplayName" id="txtDisplayName" class="form-control" placeholder="Enter Full Name" required="" />
+            </div>
+            <div class="form-group col-lg-3">
+                <label>Tên người dùng: </label>
+                <input type="text" name="txtUsername" id="txtUsername" class="form-control" placeholder="Enter Username" required="" />
+            </div>
+            <div class="form-group col-lg-3">
+                <label>Mật khẩu: </label>
+                <input type="password" name="txtPassword" id="txtPassword" class="form-control" placeholder="Enter Password" required=""/>
+            </div>
+            <div class="form-group col-lg-3">
+                <label>Địa chỉ Email: </label>
+                <input type="text" name="txtEmail" id="txtEmail" class="form-control" placeholder="Enter Email" required="" />
+            </div>
+            <div class="form-group col-lg-3">
+                <label>Số điện thoại: </label>
+                <input type="text" name="txtPhone" id="txtPhone" class="form-control" placeholder="Enter Phone" required="" />
+
+            </div>
+
+            <div class="form-group col-md-1">
+                <div style="float: right; display:inline-block;">
+                    <input class="btn btn-primary" name="submitButton" id="btnSave" value="Save" type="button" onclick="btnSave_Click()">
+                </div>
+            </div>
+        </div>
+    </div><hr />
+    <table id="tblStudent" class="table table-bordered table-striped table-responsive table-hover">
+        <thead>
+            <tr>
+                <th align="left" class="productth">ID</th>
+                <th align="left" class="productth">Full Name</th>
+                <th align="left" class="productth">Username</th>
+                <th align="left" class="productth">Password</th>
+                <th align="left" class="productth">Email</th>
+                <th align="left" class="productth">Phone</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+
